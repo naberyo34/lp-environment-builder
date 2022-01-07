@@ -2,7 +2,7 @@
  * optionsとして入力された値のバリデーションを行う
  * @param {string} options
  */
-module.exports = function optionsValidate(options) {
+module.exports = function validateOptions(options) {
   const { template, preprocessor, js } = options;
   if (!(template === 'pug' || template === 'ejs' || template === 'html')) {
     throw new Error('ERR: テンプレートエンジンの指定が無効です');

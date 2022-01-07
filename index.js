@@ -1,6 +1,7 @@
 const cac = require('cac');
 const cli = cac('lp-environment-builder');
-const optionsValidate = require('./optionsValidate');
+const validateOptions = require('./validateOptions');
+const makeDirectory = require('./makeDirectory');
 
 cli
   .command('<project>', '指定したディレクトリ名でプロジェクトを作成します')
@@ -22,13 +23,8 @@ cli
     default: 'esnext',
   })
   .action((args, options) => {
-    const projectName = args;
-    const { template, preprocessor, js } = options;
-
-    optionsValidate(options);
-    console.log(
-      `プロジェクト名: ${projectName}\nテンプレートエンジン: ${template}\nプリプロセッサ: ${preprocessor}\nJSバージョン: ${js}\n\n上記の設定でプロジェクトを作成します`
-    );
+    validateOptions(options);
+    makeDirectory(args, options);
   });
 
 cli.help();

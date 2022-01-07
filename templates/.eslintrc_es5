@@ -1,0 +1,11 @@
+{
+  "root": true,
+  "env": {
+    "browser": true,
+    "jquery": true
+  },
+  "extends": ["airbnb-base/legacy", "prettier"],
+  "rules": {
+    "func-names": 0
+  }
+}
