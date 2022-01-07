@@ -6,7 +6,7 @@ const path = require('path');
  * @param {string} projectName
  * @param {*} options
  */
-module.exports = function makeDirectory(projectName, options) {
+module.exports = function setupDirectory(projectName, options) {
   const { template, preprocessor, js } = options;
   const templateDirName = template === 'html' ? 'dist' : 'src';
   const templateSubDirName = template === 'html' ? '' : template;
@@ -59,6 +59,14 @@ module.exports = function makeDirectory(projectName, options) {
     fse.copySync(
       path.join(__dirname, 'templates', '.babelrc'),
       path.join(__dirname, projectName, '.babelrc')
+    );
+    fse.copySync(
+      path.join(__dirname, 'templates', 'webpack.dev.js'),
+      path.join(__dirname, projectName, 'webpack.dev.js')
+    );
+    fse.copySync(
+      path.join(__dirname, 'templates', 'webpack.prod.js'),
+      path.join(__dirname, projectName, 'webpack.prod.js')
     );
     fse.copySync(
       path.join(__dirname, 'templates', '.eslintrc'),
