@@ -1,6 +1,6 @@
 /**
  * optionsとして入力された値のバリデーションを行う
- * @param {string} options
+ * @param {*} options
  */
 module.exports = function validateOptions(options) {
   const { template, preprocessor, js } = options;
