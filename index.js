@@ -26,13 +26,10 @@ cli
     const { template, preprocessor, js } = options;
 
     optionsValidate(options);
-    console.log(`プロジェクト名: ${projectName}`);
-    console.log(`テンプレートエンジン: ${template}`);
-    console.log(`プリプロセッサ: ${preprocessor}`);
-    console.log(`JSバージョン: ${js}`);
-    console.log('上記の設定でプロジェクトを作成します');
+    console.log(
+      `プロジェクト名: ${projectName}\nテンプレートエンジン: ${template}\nプリプロセッサ: ${preprocessor}\nJSバージョン: ${js}\n\n上記の設定でプロジェクトを作成します`
+    );
   });
 
 cli.help();
-cli.version('0.0.1');
 cli.parse();
