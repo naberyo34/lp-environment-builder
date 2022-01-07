@@ -6,7 +6,7 @@ module.exports = {
   entry: './src/js/index.js',
   output: {
     path: `${__dirname}/dist`,
-    filename: 'main.js',
+    filename: 'common.js',
   },
   // 拡張子で利用するloaderを指定
   module: {
