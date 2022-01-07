@@ -1,0 +1,25 @@
+{
+  "name": "lp-environment-builder",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/naberyo34/lp-environment-builder.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/naberyo34/lp-environment-builder/issues"
+  },
+  "homepage": "https://github.com/naberyo34/lp-environment-builder#readme",
+  "private": true,
+  "dependencies": {
+    "cac": "^6.7.12",
+    "prettier": "^2.5.1"
+  },
+  "devDependencies": {}
+}
