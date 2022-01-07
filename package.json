@@ -3,15 +3,12 @@
   "version": "0.0.1",
   "description": "",
   "main": "index.js",
-  "scripts": {
-    "start": "node index.js"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/naberyo34/lp-environment-builder.git"
   },
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/naberyo34/lp-environment-builder/issues"
   },
@@ -20,6 +17,5 @@
   "dependencies": {
     "cac": "^6.7.12",
     "prettier": "^2.5.1"
-  },
-  "devDependencies": {}
+  }
 }
