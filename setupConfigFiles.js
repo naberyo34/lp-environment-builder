@@ -24,6 +24,10 @@ module.exports = function setupConfigFiles(projectName, options) {
     path.join(__dirname, projectName, 'package.json'),
     'utf-8'
   );
+  const packageLockJson = fse.readFileSync(
+    path.join(__dirname, projectName, 'package-lock.json'),
+    'utf-8'
+  );
   const gitIgnore = fse.readFileSync(
     path.join(__dirname, projectName, '.gitignore'),
     'utf-8'
@@ -66,6 +70,10 @@ module.exports = function setupConfigFiles(projectName, options) {
       .replace('project-name', projectName.toLowerCase())
       .replaceAll('ESLINT_DIRECTORY', eslintDirectory)
       .replaceAll('STYLELINT_DIRECTORY', stylelintDirectory)
+  );
+  fse.writeFileSync(
+    path.join(__dirname, projectName, 'package-lock.json'),
+    packageLockJson.replaceAll('project-name', projectName.toLowerCase())
   );
 
   // ignore

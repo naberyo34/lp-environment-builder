@@ -1,5 +1,9 @@
 # PROJECT_NAME
 
+## 注意事項
+
+Node.js 16系で動作確認しています。Node.jsのバージョンを合わせてご利用ください。
+
 ## Getting Started
 
 ```

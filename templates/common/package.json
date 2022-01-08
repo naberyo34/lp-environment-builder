@@ -12,6 +12,9 @@
     "format": "prettier --write 'src/**/*.{pug,js,scss}'"
   },
   "private": true,
+  "engines": {
+    "node": "16.x"
+  },
   "devDependencies": {
     "@babel/core": "^7.16.7",
     "@babel/preset-env": "^7.16.7",
