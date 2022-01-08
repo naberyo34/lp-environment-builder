@@ -12,6 +12,10 @@ module.exports = function setupConfigFiles(projectName, options) {
     js === 'esnext' ? 'src/js/**/*.js' : 'dist/assets/js/*.js';
   const stylelintDirectory =
     preprocessor === 'scss' ? 'src/scss/**/*.scss' : 'dist/assets/css/*.css';
+  const readme = fse.readFileSync(
+    path.join(__dirname, projectName, 'README.md'),
+    'utf-8'
+  );
   const gulpConfig = fse.readFileSync(
     path.join(__dirname, projectName, 'gulpfile.js/config.js'),
     'utf-8'
@@ -31,6 +35,13 @@ module.exports = function setupConfigFiles(projectName, options) {
   const eslintIgnore = fse.readFileSync(
     path.join(__dirname, projectName, '.eslintignore'),
     'utf-8'
+  );
+
+  // README.md
+  console.log(`🔧 ${projectName} の README を設定します`);
+  fse.writeFileSync(
+    path.join(__dirname, projectName, 'README.md'),
+    readme.replace('PROJECT_NAME', projectName)
   );
 
   // gulpfile.js
