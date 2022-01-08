@@ -57,20 +57,8 @@ module.exports = function setupDirectory(projectName, options) {
   // JS
   if (js === 'esnext') {
     fse.copySync(
-      path.join(__dirname, 'templates', '.babelrc'),
-      path.join(__dirname, projectName, '.babelrc')
-    );
-    fse.copySync(
-      path.join(__dirname, 'templates', 'webpack.dev.js'),
-      path.join(__dirname, projectName, 'webpack.dev.js')
-    );
-    fse.copySync(
-      path.join(__dirname, 'templates', 'webpack.prod.js'),
-      path.join(__dirname, projectName, 'webpack.prod.js')
-    );
-    fse.copySync(
-      path.join(__dirname, 'templates', '.eslintrc'),
-      path.join(__dirname, projectName, '.eslintrc')
+      path.join(__dirname, 'templates', 'esnextFiles'),
+      path.join(__dirname, projectName)
     );
   } else {
     fse.copySync(

@@ -12,7 +12,7 @@ exports.images = function images(cb) {
     .pipe(
       plumber(
         notify.onError(
-          '⚠️ images のビルドエラーが出ています ⚠️ <%= error.message %>'
+          '⚠️ images のエラーが出ています ⚠️ <%= error.message %>'
         )
       )
     )

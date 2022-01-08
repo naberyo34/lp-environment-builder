@@ -1,8 +1,7 @@
 // WebpackによってJSをビルド
 
-exports.webpackBuild = function webpackBuild(cb) {
+exports.webpackProd = function webpackProd(cb) {
   const { src, dest } = require('gulp');
-  const eslint = require('gulp-eslint');
   const plumber = require('gulp-plumber');
   const notify = require('gulp-notify');
   const webpack = require('webpack');
@@ -14,14 +13,10 @@ exports.webpackBuild = function webpackBuild(cb) {
     .pipe(
       plumber(
         notify.onError(
-          '⚠️ Webpack のビルドエラーが出ています ⚠️ <%= error.message %>'
+          '⚠️ Webpack のエラーが出ています ⚠️ <%= error.message %>'
         )
       )
     )
-    // ESLint で引っかかった場合はエラーを表示
-    .pipe(eslint({ useEslintrc: true }))
-    .pipe(eslint.format())
-    .pipe(eslint.failAfterError())
     // 書き出し
     .pipe(webpackStream(webpackConfig, webpack))
     .pipe(dest(config.dest.js));

@@ -1,3 +1,3 @@
-$(function () {
-  console.log('sample');
-});
+'use strict';
+
+console.log('sample');

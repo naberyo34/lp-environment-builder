@@ -1,28 +1,15 @@
-exports.scss = function scss(cb) {
+exports.css = function css(cb) {
   const { src, dest } = require('gulp');
-  const scss = require('gulp-sass')(require('sass'));
   const autoprefixer = require('gulp-autoprefixer');
   const plumber = require('gulp-plumber');
   const notify = require('gulp-notify');
   const config = require('./config');
 
-  // 非モジュールファイルのみコンパイルする
-  src(config.src.scss)
+  src(config.src.destCss)
     .pipe(
       plumber(
-        notify.onError(
-          '⚠️ SCSS のエラーが出ています ⚠️ <%= error.message %>'
-        )
+        notify.onError('⚠️ CSS のエラーが出ています ⚠️ <%= error.message %>')
       )
-    )
-    .pipe(
-      // 引数には https://github.com/mattdsteele/gulp-dart-sass#options 記載のコンパイル設定を渡せます
-      scss({
-        /**
-         * 圧縮設定
-         * compressed: 圧縮する
-         */
-      })
     )
     .pipe(
       // autoprefixer

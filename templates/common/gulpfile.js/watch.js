@@ -3,44 +3,39 @@
 exports.watch = function watch(cb) {
   const { series } = require('gulp');
   const { watch } = require('gulp');
-  const { pug } = require('./pug');
-  const { ejs } = require('./ejs');
-  const { scss } = require('./scss');
   const { reload } = require('./server');
   const config = require('./config');
-  const targetTemplateDirectory =
-    config.templateEngine === 'pug'
-      ? config.watch.pug
-      : config.templateEngine === 'ejs'
-      ? config.watch.ejs
-      : config.watch.html;
-  const targetTemplateTask =
-    config.templateEngine === 'pug'
-      ? pug
-      : config.templateEngine === 'ejs'
-      ? ejs
-      : null;
-  const targetPreprocessorDirectory =
-    config.preprocessor === 'scss' ? config.watch.scss : config.watch.css;
+  const { templateEngine, preprocessor, jsVersion } = config;
+  const watchTasks = [];
 
-  // watch task 実行
-  // series で コンパイル -> ホットリロードを実行
-  if (config.preprocessor === 'pug' || config.preprocessor === 'ejs') {
-    watch(targetTemplateDirectory, series(targetTemplateTask, reload));
-  } else {
-    watch(targetTemplateDirectory, series(reload));
+  if (templateEngine === 'pug') {
+    const { pug } = require('./pug');
+    watchTasks.push(() => watch(config.watch.pug, series(pug, reload)));
   }
 
-  if (config.preprocessor === 'scss') {
-    watch(targetPreprocessorDirectory, series(scss, reload));
+  if (templateEngine === 'ejs') {
+    const { ejs } = require('./ejs');
+    watchTasks.push(() => watch(config.watch.ejs, series(ejs, reload)));
+  }
+
+  if (templateEngine === 'html') {
+    watchTasks.push(() => watch(config.watch.html, reload));
+  }
+
+  if (preprocessor === 'scss') {
+    const { scss } = require('./scss');
+    watchTasks.push(() => watch(config.watch.scss, series(scss, reload)));
   } else {
-    watch(targetPreprocessorDirectory, series(reload));
+    watchTasks.push(() => watch(config.watch.css, reload));
   }
 
   // esnextのときはwebpack側でwatchしているため、gulpでのwatchはしない
-  if (config.preprocessor === 'es5') {
-    watch(config.watch.js, series(reload));
+  if (jsVersion === 'es5') {
+    watchTasks.push(() => watch(config.watch.js, reload));
   }
+
+  // watch task 実行
+  watchTasks.forEach((fn) => fn());
 
   // タスク完了
   cb();

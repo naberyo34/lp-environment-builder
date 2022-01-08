@@ -14,6 +14,7 @@ module.exports = {
     userJs: ['./src/js/**/*.js', '!./src/js/lib/*.js'],
     images: './src/images/**/*',
     destHtml: './dist/**/*.html',
+    destCss: './dist/assets/css/**/*.css',
   },
   // ビルドファイルの出力先パス
   dest: {

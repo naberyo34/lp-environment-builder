@@ -8,8 +8,6 @@ const path = require('path');
  */
 module.exports = function setupConfigFiles(projectName, options) {
   const { template, preprocessor, js } = options;
-  const templateDirectory =
-    template === 'html' ? 'dist/**/*.html' : 'src/pug/**/*.pug';
   const eslintDirectory =
     js === 'esnext' ? 'src/js/**/*.js' : 'dist/assets/js/*.js';
   const stylelintDirectory =
@@ -24,6 +22,14 @@ module.exports = function setupConfigFiles(projectName, options) {
   );
   const gitIgnore = fse.readFileSync(
     path.join(__dirname, projectName, '.gitignore'),
+    'utf-8'
+  );
+  const stylelintIgnore = fse.readFileSync(
+    path.join(__dirname, projectName, '.stylelintignore'),
+    'utf-8'
+  );
+  const eslintIgnore = fse.readFileSync(
+    path.join(__dirname, projectName, '.eslintignore'),
     'utf-8'
   );
 
@@ -47,19 +53,32 @@ module.exports = function setupConfigFiles(projectName, options) {
     path.join(__dirname, projectName, 'package.json'),
     packageJson
       .replace('project-name', projectName.toLowerCase())
-      .replaceAll('TEMPLATE_DIRECTORY', templateDirectory)
       .replaceAll('ESLINT_DIRECTORY', eslintDirectory)
       .replaceAll('STYLELINT_DIRECTORY', stylelintDirectory)
   );
 
-  // .gitignore
+  // ignore
   if (template === 'html' || preprocessor === 'css' || js === 'es5') {
-    console.log(
-      `🔧 ${template}, ${preprocessor}, ${js} 用に .gitignore を設定します`
-    );
+    console.log(`🔧 .gitignore を設定します`);
     fse.writeFileSync(
       path.join(__dirname, projectName, '.gitignore'),
       gitIgnore.replace('dist', '# dist')
     );
+
+    if (preprocessor === 'css') {
+      console.log(`🔧 .stylelintignore を設定します`);
+      fse.writeFileSync(
+        path.join(__dirname, projectName, '.stylelintignore'),
+        stylelintIgnore.replace('dist', '# dist')
+      );
+    }
+
+    if (js === 'es5') {
+      console.log(`🔧 .eslintignore を設定します`);
+      fse.writeFileSync(
+        path.join(__dirname, projectName, '.eslintignore'),
+        eslintIgnore.replace('dist', '# dist')
+      );
+    }
   }
 };

@@ -1,9 +1,6 @@
-// EJS のコンパイル
-
 exports.ejs = function ejs(cb) {
   const { src, dest } = require('gulp');
   const ejs = require('gulp-ejs');
-  const htmlhint = require('gulp-htmlhint');
   const plumber = require('gulp-plumber');
   const notify = require('gulp-notify');
   const rename = require('gulp-rename');
@@ -13,7 +10,7 @@ exports.ejs = function ejs(cb) {
     .pipe(
       plumber(
         notify.onError(
-          '⚠️ EJS のビルドエラーが出ています ⚠️ <%= error.message %>'
+          '⚠️ EJS のエラーが出ています ⚠️ <%= error.message %>'
         )
       )
     )
@@ -21,11 +18,7 @@ exports.ejs = function ejs(cb) {
       // 引数詳細は https://github.com/rogeriopvl/gulp-ejs
       ejs()
     )
-    .pipe(rename({ extname: '.html'}))
-    // コンパイルが完了してからHTMLHintにかけ、引っかかった場合はエラーを表示
-    .pipe(htmlhint())
-    .pipe(htmlhint.failAfterError())
-    // 書き出し
+    .pipe(rename({ extname: '.html' }))
     .pipe(dest(config.dest.root));
 
   // タスク完了
