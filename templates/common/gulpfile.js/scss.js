@@ -10,18 +10,13 @@ exports.scss = function scss(cb) {
   src(config.src.scss)
     .pipe(
       plumber(
-        notify.onError(
-          '⚠️ SCSS のエラーが出ています ⚠️ <%= error.message %>'
-        )
+        notify.onError('⚠️ SCSS のエラーが出ています ⚠️ <%= error.message %>')
       )
     )
     .pipe(
-      // 引数には https://github.com/mattdsteele/gulp-dart-sass#options 記載のコンパイル設定を渡せます
+      // 引数には 引数には https://github.com/dlmanning/gulp-sass 記載のコンパイル設定を渡せます 記載のコンパイル設定を渡せます
       scss({
-        /**
-         * 圧縮設定
-         * compressed: 圧縮する
-         */
+        outputStyle: 'compressed',
       })
     )
     .pipe(
