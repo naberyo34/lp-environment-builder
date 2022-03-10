@@ -1,4 +1,6 @@
 @charset 'utf-8';
 
 @use 'libs/reset';
-@use 'modules/heading';
+@use 'modules/foundation';
+@use 'modules/util';
+@use 'components/heading';

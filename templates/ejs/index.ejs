@@ -1,13 +1,10 @@
 <!DOCTYPE html>
 <html lang="ja">
-  <head>
-    <meta charset="utf-8" />
-    <title>sample page</title>
-    <link rel="stylesheet" href="./assets/css/common.css" />
-    <script src="./assets/js/common.js"></script>
-  </head>
+  <% -include('./modules/_head') %>
   <body>
-    <%- include('./modules/_heading') %>
-    <p>this is sample.</p>
+    <main>
+      <%- include('./components/_heading') %>
+      <p>this is sample.</p>
+    </main>
   </body>
 </html>

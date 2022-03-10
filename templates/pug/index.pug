@@ -1,10 +1,8 @@
 doctype html
+include modules/_vars
 html(lang="ja")
-  head
-    meta(charset="utf-8")
-    title sample page
-    link(rel="stylesheet" href="./assets/css/common.css")
-    script(src="./assets/js/common.js")
+  include modules/_head
   body
-    include modules/_heading
-    p this is sample.
+    main
+      include components/_heading
+      p this is sample.
