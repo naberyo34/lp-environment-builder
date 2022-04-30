@@ -1,5 +1,7 @@
 # lp-environment-builder
 
+![lpe](https://user-images.githubusercontent.com/39970521/166114093-a3b3e463-2de4-4636-b83d-c57bf2a1001a.png)
+
 LP 制作などで利用できる、静的なマークアップ環境を爆速で構築します。
 コマンドによって作成したディレクトリはこのリポジトリにはコミットせず、任意のリポジトリに移動して利用してください。
 
