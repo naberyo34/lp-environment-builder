@@ -11,6 +11,8 @@ Node.js 16系
 
 ## Getting Started
 
+まずはこのリポジトリをcloneしてから利用してください。
+
 ```
 npm i
 node index.js <project-name> [options]
