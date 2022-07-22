@@ -25,8 +25,8 @@ module.exports = function setupDirectory(projectName, options) {
   });
   console.log(`🔧 ${projectName} に ${template} の必要ファイルを作成します`);
   fse.copySync(
-    path.join(__dirname, 'templates', template),
-    path.join(__dirname, projectName, templateDirName, templateSubDirName)
+    path.resolve(__dirname, '../', 'templates', template),
+    path.resolve(__dirname, '../', projectName, templateDirName, templateSubDirName)
   );
 
   // CSSプリプロセッサ
@@ -34,47 +34,47 @@ module.exports = function setupDirectory(projectName, options) {
     `🔧 ${projectName} に ${preprocessor} の必要ファイルを作成します`
   );
   fse.copySync(
-    path.join(__dirname, 'templates', preprocessor),
-    path.join(__dirname, projectName, preprosessorDirName, preprocessor)
+    path.resolve(__dirname, '../', 'templates', preprocessor),
+    path.resolve(__dirname, '../', projectName, preprosessorDirName, preprocessor)
   );
   if (preprocessor === 'scss') {
     fse.copySync(
-      path.join(__dirname, 'templates', '.stylelintrc'),
-      path.join(__dirname, projectName, '.stylelintrc')
+      path.resolve(__dirname, '../', 'templates', '.stylelintrc'),
+      path.resolve(__dirname, '../', projectName, '.stylelintrc')
     );
   } else {
     fse.copySync(
-      path.join(__dirname, 'templates', '.stylelintrc_css'),
-      path.join(__dirname, projectName, '.stylelintrc')
+      path.resolve(__dirname, '../', 'templates', '.stylelintrc_css'),
+      path.resolve(__dirname, '../', projectName, '.stylelintrc')
     );
   }
   console.log(`🔧 ${projectName} に ${js} の必要ファイルを作成します`);
   fse.copySync(
-    path.join(__dirname, 'templates', js),
-    path.join(__dirname, projectName, jsDirName, 'js')
+    path.resolve(__dirname, '../', 'templates', js),
+    path.resolve(__dirname, '../', projectName, jsDirName, 'js')
   );
 
   // JS
   if (js === 'esnext') {
     fse.copySync(
-      path.join(__dirname, 'templates', 'esnextFiles'),
-      path.join(__dirname, projectName)
+      path.resolve(__dirname, '../', 'templates', 'esnextFiles'),
+      path.resolve(__dirname, '../', projectName)
     );
   } else {
     fse.copySync(
-      path.join(__dirname, 'templates', '.eslintrc_es5'),
-      path.join(__dirname, projectName, '.eslintrc')
+      path.resolve(__dirname, '../', 'templates', '.eslintrc_es5'),
+      path.resolve(__dirname, '../', projectName, '.eslintrc')
     );
   }
 
   // 共通ファイル
   console.log(`🔧 ${projectName} に 共通の必要ファイルを作成します`);
   fse.copySync(
-    path.join(__dirname, 'templates', 'images'),
-    path.join(__dirname, projectName, 'src', 'images')
+    path.resolve(__dirname, '../', 'templates', 'images'),
+    path.resolve(__dirname, '../', projectName, 'src', 'images')
   );
   fse.copySync(
-    path.join(__dirname, 'templates', 'common'),
-    path.join(__dirname, projectName)
+    path.resolve(__dirname, '../', 'templates', 'common'),
+    path.resolve(__dirname, '../', projectName)
   );
 };

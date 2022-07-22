@@ -1,8 +1,8 @@
 const cac = require('cac');
 const cli = cac('lp-environment-builder');
-const validateOptions = require('./validateOptions');
-const setupDirectory = require('./setupDirectory');
-const setupConfigFiles = require('./setupConfigFiles');
+const validateOptions = require('./src/validateOptions');
+const setupDirectory = require('./src/setupDirectory');
+const setupConfigFiles = require('./src/setupConfigFiles');
 
 cli
   .command('<project>', '指定したディレクトリ名でプロジェクトを作成します')

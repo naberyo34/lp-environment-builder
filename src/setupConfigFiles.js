@@ -13,38 +13,38 @@ module.exports = function setupConfigFiles(projectName, options) {
   const stylelintDirectory =
     preprocessor === 'scss' ? 'src/scss/**/*.scss' : 'dist/assets/css/*.css';
   const readme = fse.readFileSync(
-    path.join(__dirname, projectName, 'README.md'),
+    path.resolve(__dirname, '../', projectName, 'README.md'),
     'utf-8'
   );
   const gulpConfig = fse.readFileSync(
-    path.join(__dirname, projectName, 'gulpfile.js/config.js'),
+    path.resolve(__dirname, '../', projectName, 'gulpfile.js/config.js'),
     'utf-8'
   );
   const packageJson = fse.readFileSync(
-    path.join(__dirname, projectName, 'package.json'),
+    path.resolve(__dirname, '../', projectName, 'package.json'),
     'utf-8'
   );
   const packageLockJson = fse.readFileSync(
-    path.join(__dirname, projectName, 'package-lock.json'),
+    path.resolve(__dirname, '../', projectName, 'package-lock.json'),
     'utf-8'
   );
   const gitIgnore = fse.readFileSync(
-    path.join(__dirname, projectName, '.gitignore'),
+    path.resolve(__dirname, '../', projectName, '.gitignore'),
     'utf-8'
   );
   const stylelintIgnore = fse.readFileSync(
-    path.join(__dirname, projectName, '.stylelintignore'),
+    path.resolve(__dirname, '../', projectName, '.stylelintignore'),
     'utf-8'
   );
   const eslintIgnore = fse.readFileSync(
-    path.join(__dirname, projectName, '.eslintignore'),
+    path.resolve(__dirname, '../', projectName, '.eslintignore'),
     'utf-8'
   );
 
   // README.md
   console.log(`🔧 ${projectName} の README を設定します`);
   fse.writeFileSync(
-    path.join(__dirname, projectName, 'README.md'),
+    path.resolve(__dirname, '../', projectName, 'README.md'),
     readme.replace('PROJECT_NAME', projectName)
   );
 
@@ -53,7 +53,7 @@ module.exports = function setupConfigFiles(projectName, options) {
     `🔧 ${template}, ${preprocessor}, ${js} 用に gulpfile.js を設定します`
   );
   fse.writeFileSync(
-    path.join(__dirname, projectName, 'gulpfile.js/config.js'),
+    path.resolve(__dirname, '../', projectName, 'gulpfile.js/config.js'),
     gulpConfig
       .replace('TEMPLATE_ENGINE_CONFIG', template)
       .replace('PREPROCESSOR_CONFIG', preprocessor)
@@ -65,14 +65,14 @@ module.exports = function setupConfigFiles(projectName, options) {
     `🔧 ${template}, ${preprocessor}, ${js} 用に package.json を設定します`
   );
   fse.writeFileSync(
-    path.join(__dirname, projectName, 'package.json'),
+    path.resolve(__dirname, '../', projectName, 'package.json'),
     packageJson
       .replace('project-name', projectName.toLowerCase())
       .replaceAll('ESLINT_DIRECTORY', eslintDirectory)
       .replaceAll('STYLELINT_DIRECTORY', stylelintDirectory)
   );
   fse.writeFileSync(
-    path.join(__dirname, projectName, 'package-lock.json'),
+    path.resolve(__dirname, '../', projectName, 'package-lock.json'),
     packageLockJson.replaceAll('project-name', projectName.toLowerCase())
   );
 
@@ -80,14 +80,14 @@ module.exports = function setupConfigFiles(projectName, options) {
   if (template === 'html' || preprocessor === 'css' || js === 'es5') {
     console.log(`🔧 .gitignore を設定します`);
     fse.writeFileSync(
-      path.join(__dirname, projectName, '.gitignore'),
+      path.resolve(__dirname, '../', projectName, '.gitignore'),
       gitIgnore.replace('dist', '# dist')
     );
 
     if (preprocessor === 'css') {
       console.log(`🔧 .stylelintignore を設定します`);
       fse.writeFileSync(
-        path.join(__dirname, projectName, '.stylelintignore'),
+        path.resolve(__dirname, '../', projectName, '.stylelintignore'),
         stylelintIgnore.replace('dist', '# dist')
       );
     }
@@ -95,7 +95,7 @@ module.exports = function setupConfigFiles(projectName, options) {
     if (js === 'es5') {
       console.log(`🔧 .eslintignore を設定します`);
       fse.writeFileSync(
-        path.join(__dirname, projectName, '.eslintignore'),
+        path.resolve(__dirname, '../', projectName, '.eslintignore'),
         eslintIgnore.replace('dist', '# dist')
       );
     }
